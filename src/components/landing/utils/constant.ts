@@ -18,4 +18,5 @@ export const videos: string[] = [
   "/5.mp4",
   "/6.mp4",
   "/7.mp4",
+  "/8.mp4",
 ];
