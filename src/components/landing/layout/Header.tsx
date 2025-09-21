@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
           className="flex items-center"
         >
           <Image
-            src="/ani-logo.png"
+            src="/ani-logo.svg"
             alt="AniVerse"
             width={40}
             height={40}
