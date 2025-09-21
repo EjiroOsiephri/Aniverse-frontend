@@ -25,4 +25,8 @@ export const images: string[] = [
   "/two.jpg",
   "/three.jpg",
   "/four.jpg",
+  "/five.jpg",
+  "/six.jpg",
+  "/seven.jpg",
+  "/eight.jpg",
 ];
