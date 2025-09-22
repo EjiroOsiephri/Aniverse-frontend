@@ -4,7 +4,7 @@ export const navItems: NavItem[] = [
   { name: "Home", href: "#" },
   { name: "AI Companion", href: "#" },
   { name: "Generate Avatar", href: "#" },
-  { name: "Manga", href: "#" },
+  { name: "Manga (coming soon)", href: "#" },
   { name: "Watch Order", href: "#" },
   { name: "Community (coming soon)", href: "#" },
 ];

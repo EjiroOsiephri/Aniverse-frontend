@@ -1,4 +1,5 @@
 import AICompanionSelector from "@/components/landing/layout/AICompanionSelector";
+import AIAvatarGenerator from "@/components/landing/layout/AIGenerator";
 import AniVerse from "@/components/landing/layout/Aniverse";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <AniVerse />
       <AICompanionSelector />
+      <AIAvatarGenerator />
     </div>
   );
 }
