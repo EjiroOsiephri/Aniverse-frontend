@@ -128,7 +128,7 @@ const AICompanionSelector: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen relative z-20 py-16 px-4 sm:px-6 lg:px-1"
+      className=" relative z-20 py-16 px-4 sm:px-6 lg:px-1"
       style={{ backgroundColor: "#111827" }}
     >
       <div className="max-w-[1352px] mx-auto">

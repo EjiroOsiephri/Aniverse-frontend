@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
         y: hidden ? -100 : 0,
         transition: { duration: 0.3, ease: "easeInOut" },
       }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 xl:px-20 py-4 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 px-1 xl:px-20 py-4 transition-all duration-300"
       style={getBackgroundStyle()}
     >
       {/* Background blur overlay for better text contrast when scrolled */}

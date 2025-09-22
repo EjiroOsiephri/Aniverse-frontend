@@ -2,6 +2,7 @@ import AICompanionSelector from "@/components/landing/layout/AICompanionSelector
 import AIAvatarGenerator from "@/components/landing/layout/AIGenerator";
 import AniVerse from "@/components/landing/layout/Aniverse";
 import FeaturesSection from "@/components/landing/layout/FeaturesSection";
+import PopularSeriesSection from "@/components/landing/layout/PopularSeriesSection";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <AICompanionSelector />
       <AIAvatarGenerator />
       <FeaturesSection />
+      <PopularSeriesSection />
     </div>
   );
 }
