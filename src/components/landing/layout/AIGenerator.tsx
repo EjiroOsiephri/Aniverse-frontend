@@ -97,8 +97,8 @@ const AIAvatarGenerator: React.FC = () => {
   };
 
   return (
-    <div className=" bg-[#1a1f2e] text-white p-4 sm:p-6 lg:p-8">
-      <div className="max-w-[1352px] relative z-20 mx-auto">
+    <div className=" bg-[#1a1f2e] text-white py-16 lg:py-20">
+      <div className="max-w-[1415px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

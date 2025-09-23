@@ -108,8 +108,8 @@ const FeaturesSection: React.FC = () => {
   const isCenterCard = (id: string) => id === "center-video";
 
   return (
-    <section className="py-16 lg:py-20 px-3 bg-[#1a1b23] text-white">
-      <div className="max-w-[1352px] mx-auto relative z-20 ">
+    <section className="py-16 lg:py-20 bg-[#1a1b23] text-white">
+      <div className="max-w-[1415px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
