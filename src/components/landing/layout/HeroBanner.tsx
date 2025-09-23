@@ -101,7 +101,7 @@ const RotatingHeroBanner: React.FC = () => {
 
   return (
     <section className="bg-gray-800/50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1340px] mx-auto">
+      <div className="max-w-[1340px] relative z-20 mx-auto">
         <div className="relative rounded-2xl overflow-hidden h-64 md:h-80 lg:h-96">
           {/* Background Images with Animation */}
           <AnimatePresence mode="wait">

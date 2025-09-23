@@ -4,6 +4,7 @@ import AnimeAnnouncementsCarousel from "@/components/landing/layout/AnimeAnnounc
 import AniVerse from "@/components/landing/layout/Aniverse";
 import FanTestimonialsSection from "@/components/landing/layout/FanTestimonialSection";
 import FeaturesSection from "@/components/landing/layout/FeaturesSection";
+import AniVerseFooter from "@/components/landing/layout/Footer";
 import RotatingHeroBanner from "@/components/landing/layout/HeroBanner";
 import MangaBanner from "@/components/landing/layout/MangaBanner";
 import PopularSeriesSection from "@/components/landing/layout/PopularSeriesSection";
@@ -20,6 +21,7 @@ export default function Home() {
       <AnimeAnnouncementsCarousel />
       <FanTestimonialsSection />
       <RotatingHeroBanner />
+      <AniVerseFooter />
     </div>
   );
 }
