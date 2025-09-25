@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { motion } from "framer-motion";
 import { X, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AnimeSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,8 @@ const AnimeSignUpPage = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useRouter();
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -24,6 +27,7 @@ const AnimeSignUpPage = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Account created:", formData);
+    navigate.push("/auth/otp");
   };
 
   return (
