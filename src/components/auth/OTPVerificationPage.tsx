@@ -3,6 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { nav } from "framer-motion/client";
+import Link from "next/link";
 
 const AnimeVerifyPage = () => {
   const [code, setCode] = useState(["", "", "", ""]);
@@ -40,6 +43,8 @@ const AnimeVerifyPage = () => {
     }
   };
 
+  const navigate = useRouter();
+
   const handlePaste = (e: {
     preventDefault: () => void;
     clipboardData: { getData: (arg0: string) => string | any[] };
@@ -58,9 +63,12 @@ const AnimeVerifyPage = () => {
 
   const handleSubmit = () => {
     const verificationCode = code.join("");
+
     if (verificationCode.length === 4) {
       console.log("Verification code:", verificationCode);
     }
+
+    navigate.push("/auth/success");
   };
 
   const handleResendCode = async () => {
@@ -87,11 +95,13 @@ const AnimeVerifyPage = () => {
 
       {/* Top Left Logo - Desktop */}
       <div className="absolute top-6 left-6 z-10 hidden xl:block">
-        <img
-          src="/ani-logo.svg"
-          alt="AniVerse Logo"
-          className="h-8 w-auto cursor-pointer"
-        />
+        <Link href="/">
+          <img
+            src="/ani-logo.svg"
+            alt="AniVerse Logo"
+            className="h-8 w-auto cursor-pointer"
+          />
+        </Link>
       </div>
 
       {/* Bottom Left Copyright */}
@@ -119,11 +129,6 @@ const AnimeVerifyPage = () => {
             {/* Header */}
             <div className="text-center mb-8">
               {/* Close Button */}
-              <div className="flex justify-end mb-4">
-                <button className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
-                  <X className="w-5 h-5 text-gray-500" />
-                </button>
-              </div>
 
               {/* Logo - Mobile */}
               <div className="xl:hidden mb-6">
