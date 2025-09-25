@@ -1,12 +1,12 @@
 import { NavItem } from "./types";
 
 export const navItems: NavItem[] = [
-  { name: "Home", href: "#" },
-  { name: "AI Companion", href: "#" },
-  { name: "Generate Avatar", href: "#" },
-  { name: "Manga (coming soon)", href: "#" },
-  { name: "Watch Order", href: "#" },
-  { name: "Community (coming soon)", href: "#" },
+  { name: "Home", href: "#home" },
+  { name: "AI Companion", href: "#ai-companion" },
+  { name: "Generate Avatar", href: "#generate-avatar" },
+  { name: "Manga (coming soon)", href: "#manga" },
+  { name: "Anime News", href: "#news" },
+  { name: "Community (coming soon)", href: "#community" },
 ];
 
 export const videos: string[] = [

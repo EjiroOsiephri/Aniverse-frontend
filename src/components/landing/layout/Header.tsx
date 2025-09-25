@@ -1,3 +1,4 @@
+// components/Header.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
@@ -18,6 +19,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [activeItem, setActiveItem] = useState("Home");
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -33,6 +35,40 @@ const Header: React.FC<HeaderProps> = ({
       setHidden(false);
     }
   });
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const headerHeight = 80; // Approximate fixed header height; adjust if needed
+
+    const activateMenuItem = () => {
+      let scrollPos = window.scrollY + headerHeight;
+
+      if (window.scrollY < headerHeight) {
+        setActiveItem("Home");
+        return;
+      }
+
+      let current = "";
+      sections.forEach((sec: Element) => {
+        const top = (sec as HTMLElement).offsetTop;
+        const height = (sec as HTMLElement).clientHeight;
+        const id = sec.getAttribute("id")!;
+        if (scrollPos >= top && scrollPos < top + height) {
+          const item = navItems.find((item) => item.href === `#${id}`);
+          current = item ? item.name : "";
+        }
+      });
+
+      setActiveItem(current || "Home");
+    };
+
+    activateMenuItem();
+
+    const handleScroll = () => activateMenuItem();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Background styles based on scroll state and window size
   const getBackgroundStyle = () => {
@@ -130,11 +166,15 @@ const Header: React.FC<HeaderProps> = ({
                 color: "#8B5CF6",
                 transition: { duration: 0.2 },
               }}
-              className="text-gray-300 hover:text-purple-400 transition-colors duration-200 relative group"
+              className={`transition-colors duration-200 relative group ${
+                activeItem === item.name ? "text-purple-400" : "text-gray-300"
+              } hover:text-purple-400`}
             >
               {item.name}
               <motion.div
                 className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500"
+                initial={false}
+                animate={{ width: activeItem === item.name ? "100%" : 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
               />

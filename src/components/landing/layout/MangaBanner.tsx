@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const MangaBanner: React.FC = () => {
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8 bg-[#111827]">
+    <section id="manga" className="py-8 px-4 sm:px-6 lg:px-8 bg-[#111827]">
       <div className="max-w-[1415px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

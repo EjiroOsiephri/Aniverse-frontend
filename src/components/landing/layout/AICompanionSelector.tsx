@@ -128,10 +128,11 @@ const AICompanionSelector: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className=" relative z-20 py-16 max-w-[1415px] mx-auto px-4 sm:px-6 lg:px-8"
+      id="ai-companion"
+      className=" relative z-20 py-16  px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: "#111827" }}
     >
-      <div className="mx-auto">
+      <div className="max-w-[1415px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

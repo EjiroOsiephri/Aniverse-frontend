@@ -157,7 +157,10 @@ const FanTestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-[#1a1b23] text-white relative overflow-hidden">
+    <section
+      id="community"
+      className="py-16 lg:py-24 bg-[#1a1b23] text-white relative overflow-hidden"
+    >
       {/* Background Blobs */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-3xl"></div>

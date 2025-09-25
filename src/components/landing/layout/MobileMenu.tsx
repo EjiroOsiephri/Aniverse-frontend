@@ -1,6 +1,6 @@
 // components/MobileMenu.tsx
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants, Transition } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
@@ -15,6 +15,42 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
+  const [activeItem, setActiveItem] = useState("Home");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const headerHeight = 80; // Approximate fixed header height; adjust if needed
+
+    const activateMenuItem = () => {
+      let scrollPos = window.scrollY + headerHeight;
+
+      if (window.scrollY < headerHeight) {
+        setActiveItem("Home");
+        return;
+      }
+
+      let current = "";
+      sections.forEach((sec: Element) => {
+        const top = (sec as HTMLElement).offsetTop;
+        const height = (sec as HTMLElement).clientHeight;
+        const id = sec.getAttribute("id")!;
+        if (scrollPos >= top && scrollPos < top + height) {
+          const item = navItems.find((item) => item.href === `#${id}`);
+          current = item ? item.name : "";
+        }
+      });
+
+      setActiveItem(current || "Home");
+    };
+
+    activateMenuItem();
+
+    const handleScroll = () => activateMenuItem();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Container animation variants
   const menuVariants: Variants = {
     hidden: {
@@ -226,7 +262,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-xl font-medium text-gray-300 hover:text-white transition-all duration-300 relative group py-3 px-0 rounded-xl hover:bg-white/5"
+                    className={`block text-xl font-medium text-gray-300 hover:text-white transition-all duration-300 relative group py-3 px-0 rounded-xl hover:bg-white/5 ${
+                      activeItem === item.name ? "text-white" : ""
+                    }`}
                   >
                     <div className="flex items-center space-x-4">
                       <motion.div
@@ -246,12 +284,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     {/* Enhanced underline animation */}
                     <motion.div
                       className="absolute bottom-2 left-4 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                      initial={{ width: 0, opacity: 0 }}
+                      initial={false}
+                      animate={{
+                        width: activeItem === item.name ? "60%" : 0,
+                        opacity: activeItem === item.name ? 1 : 0,
+                      }}
                       whileHover={{
                         width: "60%",
                         opacity: 1,
                         transition: { duration: 0.3, ease: "easeOut" },
                       }}
+                      transition={{ duration: 0.3 }}
                     />
                   </motion.a>
                 ))}

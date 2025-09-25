@@ -139,7 +139,7 @@ const AnimeAnnouncementsCarousel: React.FC = () => {
   const currentSlide = announcements[currentIndex];
 
   return (
-    <section className="py-16 lg:py-20 bg-[#1a1b23] text-white">
+    <section id="news" className="py-16 lg:py-20 bg-[#1a1b23] text-white">
       <div className="max-w-[1415px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Header */}
         <motion.div
