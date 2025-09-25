@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { navItems } from "../utils/constant";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -21,6 +22,12 @@ const Header: React.FC<HeaderProps> = ({
   const [hidden, setHidden] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const { scrollY } = useScroll();
+
+  const navigate = useRouter();
+
+  const navigateToLogin = () => {
+    navigate.push("/auth/login");
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -196,6 +203,7 @@ const Header: React.FC<HeaderProps> = ({
                 : "none",
             }}
             transition={{ duration: 0.3 }}
+            onClick={navigateToLogin}
             className="px-6 py-2 border border-gray-600 rounded-full text-white hover:border-purple-400 transition-all duration-300"
           >
             Login
