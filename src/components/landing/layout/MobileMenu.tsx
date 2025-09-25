@@ -5,6 +5,7 @@ import { motion, AnimatePresence, Variants, Transition } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { navItems } from "../utils/constant";
+import { useRouter } from "next/navigation";
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
@@ -16,6 +17,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   setIsMenuOpen,
 }) => {
   const [activeItem, setActiveItem] = useState("Home");
+
+  const navigate = useRouter();
+
+  const navigateToLogin = () => {
+    navigate.push("/auth/login");
+  };
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -321,7 +328,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   whileHover={{ x: "0%" }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10">Login</span>
+                <span className="relative z-10" onClick={navigateToLogin}>
+                  Login
+                </span>
 
                 {/* Shine effect */}
                 <motion.div
