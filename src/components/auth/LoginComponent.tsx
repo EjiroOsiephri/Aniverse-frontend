@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { X, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AnimeLoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,9 +21,12 @@ const AnimeLoginPage = () => {
     }));
   };
 
+  const navigate = useRouter();
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Logged in:", formData);
+    navigate.push("/dashboard");
   };
 
   return (

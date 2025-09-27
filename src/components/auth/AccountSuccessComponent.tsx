@@ -3,10 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AnimeSuccessPage = () => {
+  const navigate = useRouter();
+
   const handleMeetCompanion = () => {
     console.log("Navigating to companion...");
+
+    navigate.push("/dashboard");
     // Navigate to companion page
   };
 
