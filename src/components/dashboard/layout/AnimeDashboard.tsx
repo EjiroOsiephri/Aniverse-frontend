@@ -329,7 +329,7 @@ const AnimeDashboard = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="lg:hidden fixed inset-0 bg-black/50 z-40"
+                className="lg:hidden fixed inset-0 bg-black z-40"
                 onClick={() => setIsMobileMenuOpen(false)}
               />
               <motion.div
@@ -447,9 +447,10 @@ const AnimeDashboard = () => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
           {/* Top Navbar */}
-          <header className="bg-[#111827] border-b border-gray-800  lg:px-6 py-4 flex-shrink-0">
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
-              <nav className="hidden md:flex items-center gap-8">
+          <header className="bg-[#111827] border-b border-gray-800 px-4 lg:px-6 py-4 flex-shrink-0">
+            <div className="max-w-7xl mx-auto w-full flex items-center">
+              {/* Left Nav */}
+              <nav className="hidden min-[1440px]:flex items-center gap-8 flex-shrink-0">
                 <button className="text-white hover:text-[#8B5CF6] transition-colors font-medium">
                   Generate Avatar
                 </button>
@@ -464,15 +465,30 @@ const AnimeDashboard = () => {
                 </button>
               </nav>
 
-              <div className="flex items-center gap-4ml-auto">
-                <div className="relative">
+              {/* Middle - Logo or Search */}
+              <div className="flex-1 ml-12 lg:ml-0 flex items-center justify-center">
+                {/* Logo for <375px */}
+                <div className="max-[374px]:block hidden mx-auto">
+                  <img
+                    src="/ani-logo.svg"
+                    alt="AniVerse"
+                    className="h-6 w-auto"
+                  />
+                </div>
+
+                {/* Search for >=375px */}
+                <div className="min-[375px]:block hidden w-full relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <input
                     type="text"
                     placeholder="Search Anime..."
-                    className="bg-gray-800 border border-gray-700 rounded-full pl-10 pr-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#8B5CF6] w-48 lg:w-64"
+                    className="bg-gray-800 border border-gray-700 rounded-full pl-10 pr-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-[#8B5CF6] w-full"
                   />
                 </div>
+              </div>
+
+              {/* Right Icons */}
+              <div className="flex items-center gap-4 flex-shrink-0">
                 <button className="relative p-2 text-gray-400 hover:text-white transition-colors">
                   <Bell className="w-5 h-5" />
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
@@ -506,7 +522,7 @@ const AnimeDashboard = () => {
                           alt={animeSlides[currentSlide].title}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
                         <div className="absolute bottom-0 left-0 p-6 lg:p-8">
                           <h2 className="text-white text-2xl lg:text-4xl font-bold mb-2">
