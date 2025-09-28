@@ -1,3 +1,4 @@
+import AICompanionOrb from "@/components/dashboard/layout/AiGuide";
 import AICompanionSelector from "@/components/landing/layout/AICompanionSelector";
 import AIAvatarGenerator from "@/components/landing/layout/AIGenerator";
 import AnimeAnnouncementsCarousel from "@/components/landing/layout/AnimeAnnouncements";
@@ -12,6 +13,7 @@ import PopularSeriesSection from "@/components/landing/layout/PopularSeriesSecti
 export default function Home() {
   return (
     <div>
+      <AICompanionOrb />
       <AniVerse />
       <AICompanionSelector />
       <AIAvatarGenerator />

@@ -59,8 +59,6 @@ const AnimeDashboard: React.FC = () => {
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="flex h-screen">
         <Sidebar
-          activeNavItem={activeNavItem}
-          setActiveNavItem={setActiveNavItem}
           isMobileMenuOpen={isMobileMenuOpen}
           setIsMobileMenuOpen={setIsMobileMenuOpen}
         />

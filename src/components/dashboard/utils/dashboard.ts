@@ -252,14 +252,14 @@ export const achievements: Achievement[] = [
 ];
 
 export const sidebarItems: SidebarItem[] = [
-  { name: "Home", icon: Home, active: true },
-  { name: "My Companion", icon: Users },
-  { name: "Avatars", icon: User },
-  { name: "Watch List", icon: List },
-  { name: "Seasonal Tracker", icon: TrendingUp },
-  { name: "Watch Later", icon: Heart },
-  { name: "Watch Order", icon: List },
-  { name: "Completed", icon: CheckCircle },
-  { name: "Achievements", icon: Trophy },
-  { name: "Manga (coming soon)", icon: Bookmark, disabled: true },
+  { name: "Home", icon: Home, path: "/dashboard", active: true },
+  { name: "My Companion", icon: Users, path: "/dashboard/companion" },
+  { name: "Avatars", icon: User, path: "/dashboard/avatars" },
+  { name: "Watch List", icon: List, path: "/dashboard/watchlist" },
+  { name: "Seasonal Tracker", icon: TrendingUp, path: "/dashboard/seasonal" },
+  { name: "Watch Later", icon: Heart, path: "/dashboard/watchlater" },
+  { name: "Watch Order", icon: List, path: "/dashboard/watchorder" },
+  { name: "Completed", icon: CheckCircle, path: "/dashboard/completed" },
+  { name: "Achievements", icon: Trophy, path: "/dashboard/achievements" },
+  { name: "Manga (coming soon)", icon: Bookmark, path: "#", disabled: true }, // No path for disabled
 ];

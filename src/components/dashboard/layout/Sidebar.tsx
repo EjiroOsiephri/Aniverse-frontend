@@ -1,24 +1,35 @@
 // components/dashboard/Sidebar.tsx
 "use client";
 import React from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { SidebarItem } from "../types/sidebar";
 import { sidebarItems } from "../utils/dashboard";
 
 interface SidebarProps {
-  activeNavItem: string;
-  setActiveNavItem: (item: string) => void;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
-  activeNavItem,
-  setActiveNavItem,
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (item: SidebarItem) => {
+    if (item.disabled || !item.path) return;
+    router.push(item.path);
+    setIsMobileMenuOpen(false);
+  };
+
+  const isActive = (item: SidebarItem) => {
+    if (!item.path) return false;
+    return pathname === item.path;
+  };
+
   return (
     <>
       {/* Mobile Menu Button */}
@@ -68,14 +79,9 @@ const Sidebar: React.FC<SidebarProps> = ({
                     return (
                       <button
                         key={item.name}
-                        onClick={() => {
-                          if (!item.disabled) {
-                            setActiveNavItem(item.name);
-                            setIsMobileMenuOpen(false);
-                          }
-                        }}
+                        onClick={() => handleNavigation(item)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors duration-200 ${
-                          activeNavItem === item.name
+                          isActive(item)
                             ? "bg-[#8B5CF6] text-white"
                             : item.disabled
                             ? "text-gray-600 cursor-not-allowed"
@@ -121,9 +127,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             return (
               <button
                 key={item.name}
-                onClick={() => !item.disabled && setActiveNavItem(item.name)}
+                onClick={() => handleNavigation(item)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors duration-200 ${
-                  activeNavItem === item.name
+                  isActive(item)
                     ? "bg-[#8B5CF6] text-white"
                     : item.disabled
                     ? "text-gray-600 cursor-not-allowed"

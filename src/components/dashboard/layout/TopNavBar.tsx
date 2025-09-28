@@ -31,7 +31,7 @@ const TopNavbar: React.FC = () => {
           </div>
 
           {/* Search for >=375px */}
-          <div className="min-[375px]:block hidden w-full relative">
+          <div className="min-[375px]:block ml-3 hidden w-full relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"

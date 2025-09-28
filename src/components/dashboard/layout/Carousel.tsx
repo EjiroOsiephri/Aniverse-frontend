@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play, Plus, Info } from "lucide-react";
-import { AnimeSlide } from "../types/anime";
 import { animeSlides } from "../utils/dashboard";
 
 interface CarouselProps {
