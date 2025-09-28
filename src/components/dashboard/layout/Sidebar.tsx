@@ -30,6 +30,10 @@ const Sidebar: React.FC<SidebarProps> = ({
     return pathname === item.path;
   };
 
+  const navigateToHome = () => {
+    router.push("/");
+  };
+
   return (
     <>
       {/* Mobile Menu Button */}
@@ -68,9 +72,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </div>
                 <div className="px-6 pb-6 border-b border-gray-800">
                   <img
+                    onClick={navigateToHome}
                     src="/ani-logo.svg"
                     alt="AniVerse"
-                    className="h-8 w-auto"
+                    className="h-8 w-auto cursor-pointer"
                   />
                 </div>
                 <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -117,8 +122,13 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Desktop Sidebar */}
       <div className="hidden lg:flex w-80 bg-[#111827] border-r border-gray-800 flex-col">
-        <div className="p-6 border-b border-gray-800 flex-shrink-0">
-          <img src="/ani-logo.svg" alt="AniVerse" className="h-8 w-auto" />
+        <div className="p-6 border-b  border-gray-800 flex-shrink-0">
+          <img
+            onClick={navigateToHome}
+            src="/ani-logo.svg"
+            alt="AniVerse"
+            className="h-8 cursor-pointer w-auto"
+          />
         </div>
 
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
