@@ -1,8 +1,15 @@
-"use client";
-
 import React, { useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
-import { Upload, Sparkles, Lightbulb, Plus } from "lucide-react";
+import {
+  Upload,
+  Sparkles,
+  Lightbulb,
+  Plus,
+  Clock,
+  Download,
+  Share2,
+  Rocket,
+} from "lucide-react";
 
 interface AnimeStyle {
   id: string;
@@ -11,6 +18,13 @@ interface AnimeStyle {
   image: string;
   isPremium: boolean;
   bgColor: string;
+}
+
+interface AvatarItem {
+  id: string;
+  image: string;
+  timestamp: string;
+  style: string;
 }
 
 const AvatarCreationPage: React.FC = () => {
@@ -68,6 +82,45 @@ const AvatarCreationPage: React.FC = () => {
       image: "/style-cyberpunk.png",
       isPremium: true,
       bgColor: "from-blue-600 to-purple-600",
+    },
+  ];
+
+  const myAvatars: AvatarItem[] = [
+    {
+      id: "1",
+      image: "/style-shonen.png",
+      timestamp: "10mins ago",
+      style: "Shōnen",
+    },
+    {
+      id: "2",
+      image: "/style-chibi.png",
+      timestamp: "30mins ago",
+      style: "Chibi",
+    },
+    {
+      id: "3",
+      image: "/style-shojo.png",
+      timestamp: "1hr ago",
+      style: "Shōjo",
+    },
+    {
+      id: "4",
+      image: "/style-seinen.png",
+      timestamp: "5mins ago",
+      style: "Seinen",
+    },
+    {
+      id: "5",
+      image: "/style-mecha.png",
+      timestamp: "15mins ago",
+      style: "Mecha",
+    },
+    {
+      id: "6",
+      image: "/style-cyberpunk.png",
+      timestamp: "45mins ago",
+      style: "Cyberpunk",
     },
   ];
 
@@ -159,7 +212,7 @@ const AvatarCreationPage: React.FC = () => {
                 </h3>
                 <p className="text-gray-400 text-sm sm:text-base">
                   "I can't wait to see your anime transformation! Need style
-                  suggestions? Just ask! ✨"
+                  suggestions? Just ask!"
                 </p>
               </div>
             </div>
@@ -213,217 +266,355 @@ const AvatarCreationPage: React.FC = () => {
           )}
         </div>
 
-        {/* Main Content */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-6 sm:space-y-8"
-        >
-          {/* Step 1: Upload Photo */}
-          <motion.div variants={itemVariants}>
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                1
-              </div>
-              <h2 className="text-lg sm:text-2xl font-bold text-white">
-                Upload Photo
-              </h2>
-            </div>
-
-            <div
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-gray-700 rounded-2xl p-6 sm:p-12 lg:p-16 hover:border-purple-500/50 transition-colors duration-300 cursor-pointer bg-[#1a1b2e]/50"
-            >
-              {uploadedImage ? (
-                <div className="flex flex-col items-center gap-4">
-                  <img
-                    src={uploadedImage}
-                    alt="Uploaded"
-                    className="max-h-48 sm:max-h-64 rounded-xl object-contain"
-                  />
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setUploadedImage(null);
-                    }}
-                    className="text-purple-400 hover:text-purple-300 text-sm"
-                  >
-                    Remove image
-                  </button>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gray-800 rounded-full flex items-center justify-center">
-                    <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-medium mb-2 text-sm sm:text-base">
-                      Choose a file or drag & drop it here
-                    </p>
-                    <p className="text-gray-500 text-xs sm:text-sm">
-                      JPEG, PNG, GIF, and MP4 formats, up to 50MB
-                    </p>
-                  </div>
-                  <button className="px-4 py-2 sm:px-6 sm:py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200 text-sm sm:text-base">
-                    Browse File
-                  </button>
-                </div>
-              )}
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-            </div>
-
-            {/* Tips */}
-            <div className="mt-4 flex items-start gap-3 bg-[#1a1b2e]/50 rounded-xl p-3 sm:p-4">
-              <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-white font-medium text-xs sm:text-sm mb-1">
-                  LUNA's tips ✨
-                </p>
-                <p className="text-gray-400 text-xs sm:text-sm">
-                  Perfect lighting! You're going to look amazing in anime style!
-                  For best results, use a clear, well-lit photo facing the
-                  camera.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Step 2: Choose Style */}
-          <motion.div variants={itemVariants}>
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                2
-              </div>
-              <h2 className="text-lg sm:text-2xl font-bold text-white">
-                Choose Your Anime Style
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {animeStyles.map((style) => (
-                <motion.div
-                  key={style.id}
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setSelectedStyle(style.id)}
-                  className={`relative cursor-pointer rounded-2xl overflow-hidden group ${
-                    selectedStyle === style.id ? "ring-2 ring-purple-500" : ""
-                  }`}
-                >
-                  <div className="aspect-[3/4] relative">
-                    <img
-                      src={style.image}
-                      alt={style.name}
-                      className="w-full h-full object-cover"
-                    />
-                    {style.isPremium && (
-                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 sm:px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 text-[10px] sm:text-xs font-bold rounded-full">
-                        Premium
-                      </div>
-                    )}
-                    {!style.isPremium && (
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-3 py-1 bg-gray-900/80 text-white text-[10px] sm:text-xs font-medium rounded-full backdrop-blur-sm">
-                        Free
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {selectedStyle === style.id && (
-                      <div className="absolute inset-0 bg-purple-500/20 flex items-center justify-center">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center">
-                          <svg
-                            className="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 bg-gradient-to-t from-black to-transparent">
-                    <h3 className="text-white font-bold text-sm sm:text-lg mb-0.5 sm:mb-1">
-                      {style.name}
-                    </h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">
-                      {style.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Luna's Recommendation */}
-            <div className="mt-4 sm:mt-6 flex items-start gap-3 bg-[#1a1b2e]/50 rounded-xl p-3 sm:p-4 border border-purple-500/20">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-white font-medium text-xs sm:text-sm mb-1">
-                  LUNA's Recommendation ✨
-                </p>
-                <p className="text-gray-400 text-xs sm:text-sm">
-                  Based on your anime preferences, I suggest trying the Shōnen
-                  style - it matches your love for action series perfectly!
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Step 3: Customize */}
-          <motion.div variants={itemVariants}>
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                3
-              </div>
-              <h2 className="text-lg sm:text-2xl font-bold text-white">
-                Customize Your Avatar
-              </h2>
-            </div>
-
-            <div className="bg-[#1a1b2e]/50 rounded-2xl p-3 sm:p-6">
-              <label className="block text-gray-400 text-xs sm:text-sm mb-2">
-                Add a prompt... (optional)
-              </label>
-              <textarea
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="E.g., 'Make me look like a confident shounen protagonist with spiky hair and determined eyes'"
-                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-colors duration-200 min-h-[80px] sm:min-h-[100px] resize-none text-sm sm:text-base"
-              />
-              <p className="text-gray-500 text-xs mt-2">
-                Describe specific details you want in your avatar
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Generate Button */}
+        {/* Tab Content */}
+        {selectedTab === "create" && (
           <motion.div
-            variants={itemVariants}
-            className="flex justify-center sm:justify-end pt-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6 sm:space-y-8"
           >
-            <button
-              disabled={!uploadedImage || !selectedStyle}
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8E2DE2] to-[#FF6EC4] text-white rounded-full font-semibold text-base sm:text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 w-full sm:w-auto justify-center"
+            {/* Step 1: Upload Photo */}
+            <motion.div variants={itemVariants}>
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                  1
+                </div>
+                <h2 className="text-lg sm:text-2xl font-bold text-white">
+                  Upload Photo
+                </h2>
+              </div>
+
+              <div
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-gray-700 rounded-2xl p-6 sm:p-12 lg:p-16 hover:border-purple-500/50 transition-colors duration-300 cursor-pointer bg-[#1a1b2e]/50"
+              >
+                {uploadedImage ? (
+                  <div className="flex flex-col items-center gap-4">
+                    <img
+                      src={uploadedImage}
+                      alt="Uploaded"
+                      className="max-h-48 sm:max-h-64 rounded-xl object-contain"
+                    />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setUploadedImage(null);
+                      }}
+                      className="text-purple-400 hover:text-purple-300 text-sm"
+                    >
+                      Remove image
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center text-center gap-4">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gray-800 rounded-full flex items-center justify-center">
+                      <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium mb-2 text-sm sm:text-base">
+                        Choose a file or drag & drop it here
+                      </p>
+                      <p className="text-gray-500 text-xs sm:text-sm">
+                        JPEG, PNG, GIF, and MP4 formats, up to 50MB
+                      </p>
+                    </div>
+                    <button className="px-4 py-2 sm:px-6 sm:py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200 text-sm sm:text-base">
+                      Browse File
+                    </button>
+                  </div>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                />
+              </div>
+
+              <div className="mt-4 flex items-start gap-3 bg-[#1a1b2e]/50 rounded-xl p-3 sm:p-4">
+                <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-white font-medium text-xs sm:text-sm mb-1">
+                    LUNA's tips
+                  </p>
+                  <p className="text-gray-400 text-xs sm:text-sm">
+                    Perfect lighting! You're going to look amazing in anime
+                    style! For best results, use a clear, well-lit photo facing
+                    the camera.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 2: Choose Style */}
+            <motion.div variants={itemVariants}>
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                  2
+                </div>
+                <h2 className="text-lg sm:text-2xl font-bold text-white">
+                  Choose Your Anime Style
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                {animeStyles.map((style) => (
+                  <motion.div
+                    key={style.id}
+                    whileHover={{ scale: 1.03, y: -5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSelectedStyle(style.id)}
+                    className={`relative cursor-pointer rounded-2xl overflow-hidden group ${
+                      selectedStyle === style.id ? "ring-2 ring-purple-500" : ""
+                    }`}
+                  >
+                    <div className="aspect-[3/4] relative">
+                      <img
+                        src={style.image}
+                        alt={style.name}
+                        className="w-full h-full object-cover"
+                      />
+                      {style.isPremium && (
+                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 sm:px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 text-[10px] sm:text-xs font-bold rounded-full">
+                          Premium
+                        </div>
+                      )}
+                      {!style.isPremium && (
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-3 py-1 bg-gray-900/80 text-white text-[10px] sm:text-xs font-medium rounded-full backdrop-blur-sm">
+                          Free
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {selectedStyle === style.id && (
+                        <div className="absolute inset-0 bg-purple-500/20 flex items-center justify-center">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                            <svg
+                              className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 bg-gradient-to-t from-black to-transparent">
+                      <h3 className="text-white font-bold text-sm sm:text-lg mb-0.5 sm:mb-1">
+                        {style.name}
+                      </h3>
+                      <p className="text-gray-300 text-xs sm:text-sm">
+                        {style.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-4 sm:mt-6 flex items-start gap-3 bg-[#1a1b2e]/50 rounded-xl p-3 sm:p-4 border border-purple-500/20">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-white font-medium text-xs sm:text-sm mb-1">
+                    LUNA's Recommendation
+                  </p>
+                  <p className="text-gray-400 text-xs sm:text-sm">
+                    Based on your anime preferences, I suggest trying the Shōnen
+                    style - it matches your love for action series perfectly!
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 3: Customize */}
+            <motion.div variants={itemVariants}>
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                  3
+                </div>
+                <h2 className="text-lg sm:text-2xl font-bold text-white">
+                  Customize Your Avatar
+                </h2>
+              </div>
+
+              <div className="bg-[#1a1b2e]/50 rounded-2xl p-3 sm:p-6">
+                <label className="block text-gray-400 text-xs sm:text-sm mb-2">
+                  Add a prompt... (optional)
+                </label>
+                <textarea
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="E.g., 'Make me look like a confident shounen protagonist with spiky hair and determined eyes'"
+                  className="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-colors duration-200 min-h-[80px] sm:min-h-[100px] resize-none text-sm sm:text-base"
+                />
+                <p className="text-gray-500 text-xs mt-2">
+                  Describe specific details you want in your avatar
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center sm:justify-end pt-4"
             >
-              <Sparkles className="w-5 h-5" />
-              Generate Avatar
-            </button>
+              <button
+                disabled={!uploadedImage || !selectedStyle}
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8E2DE2] to-[#FF6EC4] text-white rounded-full font-semibold text-base sm:text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 w-full sm:w-auto justify-center"
+              >
+                <Sparkles className="w-5 h-5" />
+                Generate Avatar
+              </button>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
+
+        {/* My Avatar Gallery Tab */}
+        {selectedTab === "my-gallery" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
+          >
+            {myAvatars.map((avatar) => (
+              <motion.div
+                key={avatar.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -5 }}
+                className="relative group cursor-pointer rounded-2xl overflow-hidden bg-[#1a1b2e]"
+              >
+                <div className="aspect-[3/4] relative">
+                  <img
+                    src={avatar.image}
+                    alt={`Avatar ${avatar.id}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-3 py-1 bg-gray-900/80 text-white text-[10px] sm:text-xs font-medium rounded-full backdrop-blur-sm">
+                    {avatar.style}
+                  </div>
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                    >
+                      <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                    >
+                      <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </motion.button>
+                  </div>
+                </div>
+                <div className="p-3 sm:p-4">
+                  <div className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm">
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span>{avatar.timestamp}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Community Gallery Tab */}
+        {selectedTab === "community" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center min-h-[500px] text-center px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto mb-8">
+                <svg viewBox="0 0 200 200" className="w-full h-full opacity-20">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M40,100 Q60,50 80,100 T120,100 Q140,50 160,100"
+                    className="text-purple-500"
+                  />
+                  <circle
+                    cx="100"
+                    cy="80"
+                    r="30"
+                    className="fill-purple-600/30"
+                  />
+                  <rect
+                    x="70"
+                    y="120"
+                    width="60"
+                    height="40"
+                    rx="5"
+                    className="fill-purple-600/30"
+                  />
+                </svg>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  animate={{
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Rocket className="w-20 h-20 sm:w-24 sm:h-24 text-purple-500" />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            <motion.h2
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl sm:text-3xl font-bold text-white mb-4"
+            >
+              Community Gallery Coming Soon!
+            </motion.h2>
+
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-gray-400 text-sm sm:text-base mb-8 max-w-md"
+            >
+              Discover amazing avatars created by fellow anime fans and share
+              your own creations.
+            </motion.p>
+
+            <motion.button
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#8E2DE2] to-[#FF6EC4] text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+            >
+              Get Notified
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </div>
   );
