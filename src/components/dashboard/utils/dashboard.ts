@@ -254,7 +254,7 @@ export const achievements: Achievement[] = [
 export const sidebarItems: SidebarItem[] = [
   { name: "Home", icon: Home, path: "/dashboard", active: true },
   { name: "My Companion", icon: Users, path: "/dashboard/companion" },
-  { name: "Avatars", icon: User, path: "/dashboard/avatars" },
+  { name: "Avatars", icon: User, path: "/dashboard/avatar" },
   { name: "Watch List", icon: List, path: "/dashboard/watchlist" },
   { name: "Seasonal Tracker", icon: TrendingUp, path: "/dashboard/seasonal" },
   { name: "Watch Later", icon: Heart, path: "/dashboard/watchlater" },
